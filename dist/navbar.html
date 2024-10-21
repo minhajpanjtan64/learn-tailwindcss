@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Navbar Bug</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Navbar container */
+        .navbar {
+            width: 100%;
+            height: 60px;
+            background-color: #003366; /* Dark blue */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Brand logo or title */
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700; /* Yellow */
+        }
+
+        /* Navigation links container */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        /* Individual link styles */
+        .nav-links li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        /* Hover effects */
+        .nav-links a:hover {
+            color: #FFD700; /* Yellow */
+            background-color: #00509E;
+            border-radius: 3px;
+        }
+
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #00509E;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1;
+            width: 200px;
+            padding-top: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .dropdown-menu a {
+            color: white;
+            font-size: 16px;
+            display: block;
+            padding: 5px 15px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #FFD700; /* Yellow */
+            color: #003366; /* Dark blue */
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        
+        /* Login/Signup button */
+        .login-signup {
+            background-color: #FFD700;
+            color: #003366;
+            padding: 8px 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 20px; /* Adjusted margin */
+        }
+        .login-signup:hover {
+            background-color: #FFC080; /* Light orange */
+        }
+
+        /* Mobile hamburger menu */
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown-menu {
+            display: none;
+            background-color: #00509E;
+            list-style: none;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .mobile-dropdown-menu li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-dropdown-menu a {
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-dropdown-menu a:hover {
+            color: #FFD700; /* Yellow */
+            background-color: #003366; /* Dark blue */
+        }
+
+        /* Media Queries for mobile view */
+        @media (max-width: 830px) {
+            .brand{
+                font-size: 20px;
+            }
+            .nav-links li a {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 10px; /* Adjust navbar padding for smaller screens */
+            }
+            
+            .nav-links {
+                display: none; /* Hide nav links on smaller screens */
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger menu */
+            }
+
+            /* Mobile menu toggle */
+            .mobile-dropdown-menu {
+                display: block;
+            }
+
+            /* Ensure consistent style for login/signup button */
+            .login-signup {
+                margin-left: auto;
+                margin-right: 14px;
+            }
+
+            .hamburger:hover {
+                color: #FFD700; /* Same hover effect as the nav links */
+            }
+        }
+
+        @media (min-width: 769px) {
+            /* Hide the mobile menu and close it when resizing to a larger screen */
+            #mobile-menu {
+                display: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Building navigation bar -->
+    <nav class="navbar">
+        <div class="brand">PW Skills</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li class="dropdown">
+                <a href="#">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Development</a></li>
+                    <li><a href="#">Mobile-Apps</a></li>
+                    <li><a href="#">SEO</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="login-signup">Login/Signup</div>
+        <div class="hamburger" onclick="toggleMenu()">&#8801;</div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <ul class="mobile-dropdown-menu" id="mobile-menu" style="display: none;">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Services</a></li>
+    </ul>
+
+    <!-- image section 
+      -->
+      <header class="header">
+        <!-- Image for desktop view -->
+        <img class="desktop-banner" src="https://cdn.pwskills.com/assets/uploads/banners/63a18cca807628f5968f528a/web.jpg" alt="Desktop Banner">
+
+        <!-- Image for mobile view -->
+        <img class="mobile-banner" src="https://cdn.pwskills.com/assets/uploads/banners/63a18cca807628f5968f528a/mobile.jpg" alt="Mobile Banner">
+    </header>
+
+    <script> 
+    // using js for the hamburger section
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const isVisible = menu.style.display === 'block';
+            menu.style.display = isVisible ? 'none' : 'block';
+        }
+
+        // Automatically hide the mobile menu when resizing to larger screens
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

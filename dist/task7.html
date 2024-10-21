@@ -1,0 +1,71 @@
+<!-- nalyze the given code and then apply similar styling principles to your own business card design with your personal information. 
+with a background image, borders, padding, and button styles -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Card Design</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-image: url('https://images.unsplash.com/photo-1521747116042-5a810fda9664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MHwwfDF8c2VhcmNofDEyfHxwcm9kdWN0JTIwY2FyfGVufDB8fHx8MTY4MDI0OTU1MQ&ixlib=rb-4.0.3&q=80&w=400');
+            background-repeat: no-repeat; /* No repeat */
+            background-position: center; /* Center the background image */
+            border: 2px solid #ddd; /* Border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 20px; /* Padding inside the card */
+            margin: 20px; /* Margin around the card */
+            text-align: center; /* Center text */
+        }
+
+        .product-name {
+            font-size: 1.5em; /* Large font for product name */
+            color: #333; /* Dark color for text */
+            margin-bottom: 10px; /* Space below product name */
+        }
+
+        .description {
+            color: #666; /* Lighter color for description */
+            margin-bottom: 20px; /* Space below description */
+        }
+
+        .button {
+            background-color: #007BFF; /* Button color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding inside the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            text-decoration: none; /* No underline */
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2 class="product-name">Stylish Product</h2>
+    <p class="description">This is a great product that you'll love!</p>
+    <a href="#" class="button">Buy Now</a>
+</div>
+</body>
+</html>

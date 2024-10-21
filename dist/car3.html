@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Contact Section</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            display: flex;
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+            width: 1000px;
+            margin: 30px 0;
+            box-shadow: 0px 14px 14px 0px rgba(0, 0, 0, 0.2), 0px 15px 25px 0px rgba(0, 0, 0, 0.19);
+            overflow: hidden;
+            transition: filter 0.3s ease-in-out; 
+        }
+
+        .blurred {
+            filter: blur(2px) brightness(0.5); 
+        }
+
+        .sidebar {
+            background-color: #ffc107;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+        }
+
+        .sidebar img {
+            margin-bottom: 20px;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .sidebar nav ul {
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .sidebar nav ul li a:hover {
+            text-decoration: underline;
+            color: rgb(234, 234, 229);
+        }
+
+        .main-content {
+            padding: 40px;
+            flex: 1;
+        }
+
+        .heading {
+            width: 600px;
+            border: 2px solid black;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subheading {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        strong {
+            color: black;
+        }
+
+        .description {
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color:#4a5568;
+        }
+
+        .contact-item p {
+            font-size: 16px;
+            color: black;
+        }
+
+        .contact-item a {
+            text-decoration: none;
+        }
+
+        .thanks-message {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .social-sidebar {
+            margin: auto 0;
+            margin-right: 18px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            gap: 30px;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #ffc107;
+            padding: 15px;
+            
+        }
+
+        .social-sidebar a {
+            display:flex;
+            color: black; 
+            font-size: 24px;
+            /* margin-bottom: 20px; */
+            text-decoration: none;
+        }
+
+        /* Contact Form Overlay */
+        .contact-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .contact-form-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            animation: popUp 0.3s forwards;
+        }
+        .contact-form-container h2 {
+            margin-bottom: 15px;
+        }
+       
+    
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background-color:#ffc107;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            background-color:#8a94a4;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        .close-btn:hover{
+            background-color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="WhatsApp Image 2024-10-16 at 16.27.42_a7f323c0.jpg" alt="Profile picture of a person with glasses and a beard" />
+            <nav>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT ME</a></li>
+                    <li><a href="#">RESUME</a></li>
+                    <li><a href="#">PORTFOLIO</a></li>
+                    <li><a href="#">TESTIMONIALS</a></li>
+                    <li><a href="#" class="clr" style="color: white;">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="heading">
+                <h1>CONTACT</h1>
+            </div>
+            <p class="subheading">Feel <strong>free</strong> to contact me!</p>
+            <p class="description">I believe that great things happen when passionate people come together, and I am excited to connect with you.</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="#" onclick="toggleForm()">
+                        <i class="fas fa-phone-alt"></i>
+                        <p>Contact Form</p>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>minhajnaqvi@gmail.com</p>
+                </div>
+            </div>
+            <p class="thanks-message">THANKS FOR PATIENCE!</p>
+        </div>
+
+        <!-- Social Media Sidebar -->
+        <div class="social-sidebar">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="contact-overlay" id="contact-form">
+        <div class="contact-form-container">
+            <h2>Contact Me</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+            <button class="close-btn" onclick="toggleForm()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('contact-form');
+            var content = document.getElementById('content');
+
+            if (form.style.display === 'flex') {
+                form.style.display = 'none';
+                content.classList.remove('blurred');
+            } else {
+                form.style.display = 'flex';
+                content.classList.add('blurred');
+            }
+        }
+    </script>
+</body>
+</html>

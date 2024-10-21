@@ -1,37 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-slate-900 m-0 p-0 grid place-content-center h-screen">
-    <h1 class="text-white text-4xl m-2 p-3 text-center">
-        test
-    </h1>
-    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg transform transition-all hover:shadow-2xl hover:-translate-y-2 hover:scale-105">
-        <div class="p-4 flex flex-col items-center">
-            <img src="mypicture.jpg" alt="" class="w-24 h-24 object-contain rounded-lg transition-transform duration-300 hover:scale-110">
-        </div>
-        <div class="p-4 text-center">
-            <div class="text-2xl font-medium text-black">
-                Tailwind CSS
-            </div>
-            <p class="text-slate-500 text-sm font-normal">By Syed Minhaj Panjtan</p>
-        </div>
-    </div>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Card & Contact Form</title>
+    <title>Contact Form</title>
     <style>
         * {
             margin: 0;
@@ -42,59 +14,8 @@
         body, html {
             height: 100%;
             font-family: 'Arial', sans-serif;
-            background-color: blanchedalmond;
         }
 
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-            padding: 20px;
-            margin: auto;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .card img {
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-        }
-
-        .card h2 {
-            margin: 15px 0 10px;
-            font-size: 24px;
-        }
-
-        .card p {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .card p a {
-            text-decoration: none;
-            color: #777;
-        }
-
-        .card button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .card button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Contact Form Overlay */
         .contact-overlay {
             display: none;
             position: fixed;
@@ -111,16 +32,18 @@
         }
 
         .contact-form-container {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.95); /* Lighten background for visibility */
             padding: 30px;
             border-radius: 10px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
             transform: scale(0.9);
             animation: popUp 0.3s forwards;
         }
 
+        /* Pop-up animation */
         @keyframes popUp {
             from {
                 transform: scale(0.9);
@@ -157,6 +80,7 @@
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-top: 5px;
             background-color: #f9f9f9;
         }
 
@@ -172,9 +96,11 @@
             background-color: #28a745;
             color: white;
             font-size: 16px;
+            font-weight: bold;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .form-group button:hover {
@@ -191,26 +117,68 @@
             cursor: pointer;
             width: 100%;
             text-align: center;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         .close-btn:hover {
             background-color: #c82333;
         }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .contact-form-container {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form-container {
+                padding: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Personal Card Section -->
-    <div class="card">
-        <img src="WhatsApp Image 2024-10-16 at 16.27.42_a7f323c0.jpg" alt="Your Photo">
-        <h2>Syed Minhaj Naqvi</h2>
-        <p>Software Engineer</p>
-        <p>Email: Minhajnaqvi@gmail.com</p>
-        <p><a href="https://web.whatsapp.com/">Phone: 03466840980</a></p>
-        <button onclick="toggleForm()">Contact Me</button>
+    <!-- Temporary Button to Toggle Form -->
+    <button onclick="toggleForm()" style="padding: 10px 20px; margin: 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Show Contact Form
+    </button>
+
+    <!-- Contact Form (hidden initially) -->
+    <div class="contact-overlay" id="contact-form">
+        <div class="contact-form-container">
+            <h2>Contact Me</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <button class="close-btn" onclick="toggleForm()">Close</button>
+        </div>
     </div>
 
-  
+    <script>
+        // Toggle form display when clicked on the profile card or button
+        function toggleForm() {
+            const form = document.getElementById('contact-form');
+            form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 
 </body>
 </html>
